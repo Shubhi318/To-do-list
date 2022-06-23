@@ -1,3 +1,26 @@
+
+const toDoBlock= document.getElementById('to-do-block');
+
+let idCount=1;
+
+
+const toDoDragStart= (event) =>{
+    let cardBeingDragged= event.target.id
+    event.dataTransfer.setData('ToDoCard', cardBeingDragged)
+}
+
+const allowDrop= (event) =>{
+    event.preventDefault()
+}
+
+const dropToDo= (event) =>{
+    let cardBeingDragged= event.dataTransfer.getData('ToDoCard')
+    let cardBeingDropped= document.getElementById(cardBeingDragged)
+    let parentElement= event.target
+    parentElement.appendChild(cardBeingDropped)
+}
+
+
 const createToDoDiv = (toDoInput, toDoPriorityInput) => {
 
     const toDoCardDiv= document.createElement('div')
@@ -10,6 +33,17 @@ const createToDoDiv = (toDoInput, toDoPriorityInput) => {
 
     toDoCardDiv.classList= 'card to-do-card'
     cardHeaderDiv.classList= 'card-header'
+    cardBodyDiv.classList= 'card-body'
+    cardTitleH5.classList= 'card-title'
+    deleteButton.classList= 'btn btn-danger btn-sm delete'
+
+    toDoCardDiv.id= `to-do-card-${idCount}`
+
+    priorityDisplaySpan.innerText= `${toDoPriorityInput} Priority`
+    cardTitleH5.innerText= toDoInput
+    // deadlineDisplaySpan.innerText= toDoDeadline
+    deleteButton.innerText= 'Delete'
+   
 
     switch(toDoPriorityInput){
         case 'High':
@@ -23,20 +57,14 @@ const createToDoDiv = (toDoInput, toDoPriorityInput) => {
               break;
     }
     
-    cardBodyDiv.classList= 'card-body'
-    cardTitleH5.classList= 'card-title'
-    deleteButton.classList= 'btn btn-danger btn-sm delete'
 
-    toDoCardDiv.id= `to-do-card-${idCount}`
+
+   
     toDoCardDiv.draggable= "true"
-    toDoCardDiv.ondragstart= "toDoDragStart()"
-    toDoCardDiv.ondrag= "toDODrag()"
+    toDoCardDiv.addEventListener('dragstart', toDoDragStart)
+  
 
 
-    priorityDisplaySpan.innerText= `${toDoPriorityInput} Priority`
-    cardTitleH5.innerText= toDoInput
-    // deadlineDisplaySpan.innerText= toDoDeadline
-    deleteButton.innerText= 'Delete'
    
 
     toDoCardDiv.appendChild(cardHeaderDiv)

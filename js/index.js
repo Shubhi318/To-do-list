@@ -1,5 +1,3 @@
-const toDoBlock= document.getElementById('to-do-block');
-let idCount=1;
 
 
 const createToDo = () =>{
@@ -19,17 +17,6 @@ const createToDo = () =>{
     createToDoDiv(toDoInput ,toDoPriorityInput)
 }
       
-const toDODragStart= () =>{
 
-}
 
-const toDODrag= () =>{
-    
-}
 
-const dropToDo= (event) =>{
-    
-}
-const allowDrop= (event) =>{
-    event.preventDefault()
-}
