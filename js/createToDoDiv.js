@@ -73,6 +73,7 @@ const createToDoDiv = (toDoInput, toDoPriorityInput) => {
     toDoCardDiv.appendChild(cardBodyDiv)
     cardBodyDiv.appendChild(cardTitleH5)
     cardBodyDiv.appendChild(deleteButton)
+    deleteButton.addEventListener('click', () => toDoCardDiv.style.display= 'none')
     toDoBlock.appendChild(toDoCardDiv)
     
 
